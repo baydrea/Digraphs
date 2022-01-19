@@ -701,24 +701,24 @@ end);
 # edges from <out[j]> to <out[i]> for all <i> greater than <j>.
 
 InstallMethod(UnweightedBellmanFord, "for a digraph by out-neighbours",
-[IsDigraph,IsPosInt],
+[IsDigraph, IsPosInt],
 function(digraph, source)
   local distance, n, predecessor, i, inf, u, v, edge, w;
   n := DigraphNrVertices(digraph);
-  #wouldn't  work for weighted digraphs
-  inf := n+1;
-  distance := List([1..n],x->0);
-  predecessor := List([1..n],x->0);
+  # wouldn't  work for weighted digraphs
+  inf := n + 1;
+  distance := List([1 .. n], x -> 0);
+  predecessor := List([1 .. n], x -> 0);
   for i in DigraphVertices(digraph) do
     distance[i] := inf;
     predecessor[i] := 0;
   od;
   distance[source] := 0;
-  for i in [1..n-1] do
+  for i in [1 .. n - 1] do
     for edge in DigraphEdges(digraph) do
       u := edge[1];
       v := edge[2];
-      #only works for unweighted graphs, w needs to be changed into a variable
+      # only works for unweighted graphs, w needs to be changed into a variable
       w := 1;
       if distance[u] + w < distance[v] then
         distance[v] := distance[u] + w;
@@ -729,7 +729,7 @@ function(digraph, source)
   for edge in DigraphEdges(digraph) do
     u := edge[1];
     v := edge[2];
-    #only works for unweighted graphs, w needs to be changed into a variable
+    # only works for unweighted graphs, w needs to be changed into a variable
     w := 1;
     if distance[u] + w < distance[v] then
       Print("Graph contains a negative-weight cycle");
@@ -745,8 +745,6 @@ function(digraph, source)
   od;
   return [distance, predecessor];
 end);
-
-
 
 InstallMethod(DigraphTopologicalSort, "for a digraph by out-neighbours",
 [IsDigraphByOutNeighboursRep],
