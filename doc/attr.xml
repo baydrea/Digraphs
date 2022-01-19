@@ -911,9 +911,10 @@ gap> DigraphShortestDistances(D);
     function returns a list with two sublists of <M>n</M> entries, where each entry is
     either a non-negative integer, or <K>fail</K>.  <P/>
 
-    If there is a directed path from <A>source</A> to vertex <C>i</C>, then
-    the value of the entry i in the first sublist is the length of the shortest such directed
-    path and the entry i in the second sublist is the vertex preceding the vertex of that entry. If no such directed path exists,     then the value of i is <C>fail</C>.  We use the convention that the distance from every vertex to
+    If there is a directed path from <A>source</A> to vertex <C>i</C>, then for each i-th entry the first sublist contains 
+    the length of the shortest directed path to that i-th vertex and second sublist contains the vertex preceding that i-th 
+    vertex. If no such directed path exists, then the value of i is <C>fail</C>.  
+    We use the convention that the distance from every vertex to
     itself is <C>0</C> for all vertices <C>i</C>.
     <P/>
 
